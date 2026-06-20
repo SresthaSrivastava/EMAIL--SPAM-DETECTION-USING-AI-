@@ -1,8 +1,8 @@
 # EMAIL--SPAM-DETECTION-USING-AI-
 An AI-powered email spam detection system built using machine learning. The project applies natural language processing (NLP) and classification algorithms to identify and filter spam emails with high accuracy
 📧 Email Spam Detection using AI (Google Colab)
-📌 Overview
 
+📌 Overview
 This project is an AI-based Email Spam Detection system built using Machine Learning and Natural Language Processing (NLP).
 It classifies emails as Spam or Not Spam (Ham) using a trained ML model.
 
@@ -17,6 +17,7 @@ Text data is cleaned and preprocessed
 TF-IDF vectorization converts text into numerical form
 Machine Learning model is trained on labeled data
 Model predicts whether an email is spam or not
+
 ⚙️ Technologies Used
 Python 🐍
 Google Colab
@@ -26,7 +27,9 @@ Scikit-learn
 NLP (TF-IDF Vectorizer)
 
 🤖 Machine Learning Model
-Naive Bayes / Logistic Regression (update based on your model)
+Naive Bayes 
+Logistic Regression 
+Decision Tree 
 Trained on labeled email dataset
 Used for binary classification (Spam / Not Spam)
 
