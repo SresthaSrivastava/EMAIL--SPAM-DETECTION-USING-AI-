@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Spam Detection</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* NEW DARK BLUE BACKGROUND */
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+
+        /* CARD CONTAINER */
+        .container {
+            width: 430px;
+            padding: 30px;
+            border-radius: 20px;
+
+            /* NEW LIGHT CARD COLOR */
+            background: #f8f9ff;
+
+            box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.25);
+            animation: fadeIn 1s ease;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            font-size: 15px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        textarea, select {
+            width: 100%;
+            margin-top: 8px;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            outline: none;
+            font-size: 15px;
+            box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2c5364;
+            color: #fff;
+            border: none;
+            font-size: 17px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #203a43;
+        }
+
+        #resultBox {
+            margin-top: 20px;
+            background: #eef1ff;
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid #d0d8ff;
+            color: #333;
+            animation: fadeIn 0.7s ease;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Email Spam Detector</h1>
+        <p class="subtitle">AI-powered classification using Machine Learning</p>
+
+        <div class="input-group">
+            <label>Select Model</label>
+            <select id="modelSelect">
+                <option value="nb">Naive Bayes</option>
+                <option value="lr">Logistic Regression</option>
+                <option value="dt">Decision Tree</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Email Content</label>
+            <textarea id="emailText" placeholder="Paste your email text here..."></textarea>
+        </div>
+
+        <button onclick="predict()">Detect Spam</button>
+
+        <div id="resultBox" class="hidden">
+            <h3>Prediction Result</h3>
+            <p id="resultText"></p>
+        </div>
+    </div>
+
+    <script>
+        function predict() {
+            let email = document.getElementById("emailText").value;
+            let model = document.getElementById("modelSelect").value;
+
+            if (email.trim() === "") {
+                alert("Please enter an email text!");
+                return;
+            }
+
+            let text = email.toLowerCase();
+
+            let isSpam =
+                text.includes("winner") ||
+                text.includes("free") ||
+                text.includes("cash") ||
+                text.includes("offer") ||
+                text.includes("credit card") ||
+                text.includes("loan") ||
+                text.includes("click here");
+
+            let resultBox = document.getElementById("resultBox");
+            let resultText = document.getElementById("resultText");
+            resultBox.classList.remove("hidden");
+
+            if (isSpam) {
+                resultText.innerHTML = `Model (${model}) predicts: 
+                    <b style="color:#d62828; font-size:18px;">🚨 SPAM</b>`;
+            } else {
+                resultText.innerHTML = `Model (${model}) predicts:
+                    <b style="color:#2a9d8f; font-size:18px;">✔ NOT SPAM</b>`;
+            }
+        }
+    </script>
+
+</body>
+</html>
